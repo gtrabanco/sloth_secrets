@@ -2,6 +2,8 @@ TODO Review of the readme
 
 -----
 
+# This is a beta repository by the momento it must be not used yet.
+
 # About this repository
 This is a template/skel repository to store secrets with your DOTLY framwework
 
@@ -35,6 +37,24 @@ dot secrets hide
 
 It is important to know that when you append file to secrets it will be moved to `secrets/files` directory and save them in that folder by moving to it and store command will create a symlink in the original location.
 The store of the file can be modified inside `secrets/files` by using secondary argument after the file path (relative path to `secrets/files`).
+
+## Deleting secrets
+
+For deleting variables use:
+
+```bash
+dot secrets var -d my_secret_var
+```
+
+For deleting stored files:
+
+```bash
+dot secrets store delete [<relative_path>]
+```
+
+El path al archivo es relativo a donde se queda almacenado en tus secrets. El archivo intenta borrarse en todos los commits. También borra el enlace symbolico.
+
+En caso de no dar ninguna ruta muestra el listado de archivos y podrás seleccionar aquellos que quieras borrar.
 
 ## Security recommedations
 
