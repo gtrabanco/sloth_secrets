@@ -15,23 +15,10 @@ This is a template/skel repository to store secrets with your DOTLY framwework
 3. Append your new secrets repository `dot secrets init <your_git_url>`
 4. Append your GITHUB_TOKEN `dot secrets var GITHUB_TOKEN "my secret token"`
 5. Apply symlinks feature update file if you have updated your DOTLY `dot symlinks update secrets-feature`
-6. Load on startup `dot self init secrets`
-7. Reset your terminal and check by executing `echo "$GITHUB_TOKEN"`
+6. Get your secret variable value by `dot secrets var GITHUB_TOKEN`
+7. (OPTIONAL) Load on startup `dot self init secrets` and reset your terminal and check by executing `echo "$GITHUB_TOKEN"`
 
 > The secrets scripts require `pip3 install yq` all secrets scripts will try to install if can not reach that binary.
-
-## Unload current secret variables
-
-There are two ways of doing this:
-
-1. Unset all secret variables so they wont show any content:
-```bash
-dot secrets unload
-```
-2. Show all secret variables with the `****` value:
-```bash
-dot secrets hide
-```
 
 ## Appending files in secrets and linking
 
