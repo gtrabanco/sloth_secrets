@@ -48,3 +48,7 @@ En caso de no dar ninguna ruta muestra el listado de archivos y podrás seleccio
 Remember that in this repository you will save private files so keep this repository private or use any crypted GIT repository like Keybase repositories is recommended.
 
 Also remember that is your responsability the security of the repository and we do not provide any guarantee about the `secrets` dotly scripts or your secrets. IS ONLY YOUR OWN RESPONSABILITY
+
+## secrets.json
+
+Please do not customize this file manually. Do not delete first `link` value it could produce unpredicted results.
