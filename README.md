@@ -45,7 +45,7 @@ En caso de no dar ninguna ruta muestra el listado de archivos y podrás seleccio
 
 ## Security recommedations
 
-Remember that in this repository you will save private files so keep this repository private or use any crypted GIT repository like Keybase repositories is recommended.
+Remember that in this repository you will save private files so keep this repository private or use any crypted GIT repository like Keybase repositories is recommended. ENCRYPTION WILL NOT HAPPEN USING DOTLY SCRIPTS, the files and vars will be stored in cleartext. To handle this you will need a 3rd party software/hardware like Keybase git repositories which are stores encripted.
 
 Also remember that is your responsability the security of the repository and we do not provide any guarantee about the `secrets` dotly scripts or your secrets. IS ONLY YOUR OWN RESPONSABILITY
 
