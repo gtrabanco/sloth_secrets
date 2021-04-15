@@ -21,18 +21,38 @@ Anyway they will be installed the first time you execute any `secrets` subcomman
 ## Creating your own repository from this one
 
 ### If you are planning to use GITHUB private repository
+
 1. Click on "Use this template"
 2. Repository name: "secrets" (You can use another name but I recommend you to use this name because it will be added as submodule in dotly with this name, no way to use other name).
 3. Mark as private repository
 4. Copy the ssh git url and continue to [Installation](#Installation)
 
+#### Keybase as submodule
+
+If you try to use a keybase repository, you notice that the protocol at the beginning of the git url is `keybase:` and for this reason you will receive this error:
+
+```
+Cloning into '~/.dotfiles/modules/secrets'...
+fatal: transport 'keybase' not allowed
+fatal: clone of 'keybase://private/$USER/secrets' into submodule path '~/.dotfiles/modules/secrets' failed
+```
+
+
+This is because for security reasons git only allow some features for specific protocols so we need to allow `keybase:` protocol with git, to this is such as simple as executing:
+
+```bash
+git config --global --add protocol.keybase.allow always
+```
+
 ### If you are planning to use other GIT server
+
 1. In your teminal go to a whaever you use to store your dev files and clone this repository and execute all this commands (clone and delete all git content):
 ```bash
 git clone git@github.com:gtrabanco/dotly_secrets.git secrets
 cd $_
 rm -rf .git
 ```
+
 2. Now knowing the new url for the repository initilize repo and added new url as origin, finally push the template to your newly created repository:
 ```bash
 git init
@@ -41,15 +61,19 @@ git add .
 git commit "Initial commit: $(date +%s)"
 git push origin master
 ```
+
 3. Now you can delete from your computer, but store `<your_git_url>`, you will needed later.
+
 ```bash
 git remote get-url origin | pbcopy
 cd ..
 rm -rf secrets
 ```
+
 4. Go [Installation](#Installation)
 
 ## Installation
+
 1. Create your own private using this one as your template repository as private repository (see ## Security recommendations) with your desired name, it is suggested to use `secrets` instead of `dotly_secrets`. If you have not done this see [Creating your own repository from this one](#Creating your own repository from this one).
 2. Get your created repository ssh git url.
 3. Append your new secrets repository `dot secrets init <your_git_url>`
@@ -59,6 +83,7 @@ rm -rf secrets
 7. (OPTIONAL) Load on startup `dot self init secrets_autload` and reset your terminal and check by executing `echo "$GITHUB_TOKEN"`
 
 ## Recovering from "old" dotfiles
+
 After a while probably you will need to restore your dotfiles. Restore as normal any other dotly dotfiles and execute at the end:
 
 ```bash
