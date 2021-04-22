@@ -1,5 +1,5 @@
 # About this repository
-This is a template/skel repository to store secrets with your dotfiles if you are using [DOTLY framwework](https://github.com/codelytv/dotly).
+This is a template/skel repository to store secrets with your dotfiles if you are using [DOTLY framwework](https://github.com/gtrabanco/dotly).
 
 # Features
 
