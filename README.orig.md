@@ -179,6 +179,36 @@ Remember that in this repository you will save private files so keep this reposi
 
 Also remember that is your responsability the security of the repository and we do not provide any guarantee about the `secrets` dotly scripts or your secrets. IS ONLY YOUR OWN RESPONSABILITY
 
+### Recommended dotly internal directories append to secrets
+
+This is the list of internal DOTLY dotfiles (files in `DOTFILES_PATH`) to add to secrets:
+* os/mac/settings
+* ssh/config.d (If you are using [gtrabanco/dotly](https://github.com/gtrabanco/dotly) with (`feature/ssh_config2.0`)[https://github.com/gtrabanco/dotly/tree/feature/ssh_config2.0] or (`beta`)[https://github.com/gtrabanco/dotly/tree/beta])
+
+SSH Configuration is not really a sensible data but maybe you have internal or public IPs that you do not want other people to know about.
+
+#### How to append them to secrets
+To append this dirs simply type:
+
+```bash
+cd "$DOTFILES_PATH/os/mac"
+dot secrets file settings
+cd "$DOTFILES_PATH/ssh"
+dot secrets file config.d ssh
+```
+
+#### Ignoring internal symlinks in your dotfiles
+
+To ignore internal symlinks is simple, just add the complete internal path to the symlink. This will be only available internally only when you will execute `dot secrets apply` after restore your dotfiles.
+
+```bash
+echo "os/mac/settings" >> "$DOTFILES_PATH/.gitignore"
+echo "ssh/config.d" >> "$DOTFILES_PATH/.gitignore"
+# Update your dotfiles repository
+git add .
+git commit -m "Added mac settings and ssh config to secrets. Ignoreing internal secrets symlinks"
+git push origin master
+```
 
 ## secrets.json
 

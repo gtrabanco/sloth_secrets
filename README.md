@@ -1,33 +1,38 @@
 # Summary 
 
-- [About this repository](#section-id-1)
-- [Features](#section-id-5)
-- [Usage](#section-id-12)
-  - [Installation prerequisites](#section-id-14)
-  - [Creating your own repository from this one](#section-id-22)
-    - [If you are planning to use GITHUB private repository](#section-id-24)
-      - [Keybase as submodule](#section-id-31)
-    - [If you are planning to use other GIT server](#section-id-48)
-  - [Installation](#section-id-76)
-    - [Load secrets vars on startup (automatically)](#section-id-85)
-    - [Load secrets vars on startup (manually)](#section-id-90)
-  - [Recovering from "old" dotfiles](#section-id-99)
-  - [Appending files in secrets and linking](#section-id-110)
-  - [Modifying the link of a current secret](#section-id-121)
-  - [Deleting secrets](#section-id-132)
-    - [About secrets file deleting](#section-id-147)
-  - [Purging all](#section-id-154)
-  - [Security recommedations](#section-id-175)
-  - [secrets.json](#section-id-182)
+- [About this repository](#section-id-2)
+- [Features](#section-id-6)
+- [Usage](#section-id-13)
+  - [Installation prerequisites](#section-id-15)
+  - [Creating your own repository from this one](#section-id-23)
+    - [If you are planning to use GITHUB private repository](#section-id-25)
+      - [Keybase as submodule](#section-id-32)
+    - [If you are planning to use other GIT server](#section-id-49)
+  - [Installation](#section-id-77)
+    - [Load secrets vars on startup (automatically)](#section-id-86)
+    - [Load secrets vars on startup (manually)](#section-id-91)
+  - [Recovering from "old" dotfiles](#section-id-100)
+  - [Appending files in secrets and linking](#section-id-111)
+  - [Modifying the link of a current secret](#section-id-122)
+  - [Deleting secrets](#section-id-133)
+    - [About secrets file deleting](#section-id-148)
+  - [Purging all](#section-id-155)
+  - [Security recommedations](#section-id-176)
+    - [Recommended dotly internal directories append to secrets](#section-id-182)
+      - [How to append them to secrets](#section-id-190)
+      - [Ignoring internal symlinks in your dotfiles](#section-id-200)
+- [Update your dotfiles repository](#section-id-207)
+  - [secrets.json](#section-id-213)
   
 
-<div id='section-id-1'/>
+<!-- Use this to modify and later apply summarize script -->
+<div id='section-id-2'/>
 
 # About this repository
 This is a template/skel repository to store secrets with your dotfiles if you are using [DOTLY framwework](https://github.com/gtrabanco/dotly).
 
 
-<div id='section-id-5'/>
+<div id='section-id-6'/>
 
 # Features
 
@@ -36,11 +41,11 @@ This is a template/skel repository to store secrets with your dotfiles if you ar
 * Easy migration of private files
 * Autoload secret variables.
 
-<div id='section-id-12'/>
+<div id='section-id-13'/>
 
 # Usage
 
-<div id='section-id-14'/>
+<div id='section-id-15'/>
 
 ## Installation prerequisites
 
@@ -50,11 +55,11 @@ Make sure you have installed these packages:
 
 Anyway they will be installed the first time you execute any `secrets` subcommand if they are not.
 
-<div id='section-id-22'/>
+<div id='section-id-23'/>
 
 ## Creating your own repository from this one
 
-<div id='section-id-24'/>
+<div id='section-id-25'/>
 
 ### If you are planning to use GITHUB private repository
 
@@ -63,7 +68,7 @@ Anyway they will be installed the first time you execute any `secrets` subcomman
 3. Mark as private repository
 4. Copy the ssh git url and continue to [Installation](#Installation)
 
-<div id='section-id-31'/>
+<div id='section-id-32'/>
 
 #### Keybase as submodule
 
@@ -82,7 +87,7 @@ This is because for security reasons git only allow some features for specific p
 git config --global --add protocol.keybase.allow always
 ```
 
-<div id='section-id-48'/>
+<div id='section-id-49'/>
 
 ### If you are planning to use other GIT server
 
@@ -112,7 +117,7 @@ rm -rf secrets
 
 4. Go [Installation](#Installation)
 
-<div id='section-id-76'/>
+<div id='section-id-77'/>
 
 ## Installation
 
@@ -123,14 +128,14 @@ rm -rf secrets
 5. Append for example, your GITHUB_TOKEN `dot secrets var GITHUB_TOKEN "my secret token"`
 6. Get your secret variable value by `dot secrets var GITHUB_TOKEN`
 
-<div id='section-id-85'/>
+<div id='section-id-86'/>
 
 ### Load secrets vars on startup (automatically)
 
 1. To load on startup, execute: `dot self init secrets_autload`
 2. Reset your terminal and check by executing `echo "$GITHUB_TOKEN"`
 
-<div id='section-id-90'/>
+<div id='section-id-91'/>
 
 ### Load secrets vars on startup (manually)
 
@@ -141,7 +146,7 @@ rm -rf secrets
 export GITHUB_TOKEN="$(dot secrets var GITHUB_TOKEN)"
 ```
 
-<div id='section-id-99'/>
+<div id='section-id-100'/>
 
 ## Recovering from "old" dotfiles
 
@@ -154,7 +159,7 @@ dot secrets sync
 That should download your secrets and apply symlinks to your secrets.
 
 
-<div id='section-id-110'/>
+<div id='section-id-111'/>
 
 ## Appending files in secrets and linking
 
@@ -167,7 +172,7 @@ For example we want to save our `~/.ssh/id_rsa` private key in `secrets/file/ssh
 dot secrets file ~/.ssh/id_rsa ssh
 ```
 
-<div id='section-id-121'/>
+<div id='section-id-122'/>
 
 ## Modifying the link of a current secret
 
@@ -180,7 +185,7 @@ dot file edit --by-alias
 In the prompt select `~/.ssh/id_rsa` and put later `/etc/dropbear/id_rsa` after that your `secrets` repository will be synced, the old symlink will be removed and new one will be applied.
 
 
-<div id='section-id-132'/>
+<div id='section-id-133'/>
 
 ## Deleting secrets
 
@@ -197,7 +202,7 @@ dot secrets file delete [<relative_path>]
 ```
 
 
-<div id='section-id-147'/>
+<div id='section-id-148'/>
 
 ### About secrets file deleting
 
@@ -206,7 +211,7 @@ The path to the file is relative to the stored secrets (relative to: `$DOTFILES_
 If you do not provide any argument you will be asked about the file you want to delete. You will see a list using fzf and you can select multiple files by using `Shift+Tab`.
 
 
-<div id='section-id-154'/>
+<div id='section-id-155'/>
 
 ## Purging all
 
@@ -229,7 +234,7 @@ dot secrets purge
 ```
 
 
-<div id='section-id-175'/>
+<div id='section-id-176'/>
 
 ## Security recommedations
 
@@ -237,8 +242,46 @@ Remember that in this repository you will save private files so keep this reposi
 
 Also remember that is your responsability the security of the repository and we do not provide any guarantee about the `secrets` dotly scripts or your secrets. IS ONLY YOUR OWN RESPONSABILITY
 
-
 <div id='section-id-182'/>
+
+### Recommended dotly internal directories append to secrets
+
+This is the list of internal DOTLY dotfiles (files in `DOTFILES_PATH`) to add to secrets:
+* os/mac/settings
+* ssh/config.d (If you are using [gtrabanco/dotly](https://github.com/gtrabanco/dotly) with (`feature/ssh_config2.0`)[https://github.com/gtrabanco/dotly/tree/feature/ssh_config2.0] or (`beta`)[https://github.com/gtrabanco/dotly/tree/beta])
+
+SSH Configuration is not really a sensible data but maybe you have internal or public IPs that you do not want other people to know about.
+
+<div id='section-id-190'/>
+
+#### How to append them to secrets
+To append this dirs simply type:
+
+```bash
+cd "$DOTFILES_PATH/os/mac"
+dot secrets file settings
+cd "$DOTFILES_PATH/ssh"
+dot secrets file config.d ssh
+```
+
+<div id='section-id-200'/>
+
+#### Ignoring internal symlinks in your dotfiles
+
+To ignore internal symlinks is simple, just add the complete internal path to the symlink. This will be only available internally only when you will execute `dot secrets apply` after restore your dotfiles.
+
+```bash
+echo "os/mac/settings" >> "$DOTFILES_PATH/.gitignore"
+echo "ssh/config.d" >> "$DOTFILES_PATH/.gitignore"
+<div id='section-id-207'/>
+
+# Update your dotfiles repository
+git add .
+git commit -m "Added mac settings and ssh config to secrets. Ignoreing internal secrets symlinks"
+git push origin master
+```
+
+<div id='section-id-213'/>
 
 ## secrets.json
 
