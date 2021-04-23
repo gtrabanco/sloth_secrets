@@ -1,36 +1,6 @@
-# Summary 
-
-- [About this repository](#section-id-1)
-- [Features](#section-id-5)
-- [Usage](#section-id-12)
-  - [Installation prerequisites](#section-id-14)
-  - [Creating your own repository from this one](#section-id-22)
-    - [If you are planning to use GITHUB private repository](#section-id-24)
-      - [Keybase as submodule](#section-id-31)
-    - [If you are planning to use other GIT server](#section-id-48)
-  - [Installation](#section-id-76)
-    - [Load secrets vars on startup (automatically)](#section-id-85)
-    - [Load secrets vars on startup (manually)](#section-id-90)
-  - [Recovering from "old" dotfiles](#section-id-99)
-  - [Appending files in secrets and linking](#section-id-110)
-  - [Modifying the link of a current secret](#section-id-121)
-  - [Deleting secrets](#section-id-132)
-    - [About secrets file deleting](#section-id-147)
-  - [Purging all](#section-id-154)
-  - [Security recommedations](#section-id-175)
-  - [secrets.json](#section-id-182)
-  
-
-<div id='section-id-1'/>
-
 # About this repository
 This is a template/skel repository to store secrets with your dotfiles if you are using [DOTLY framwework](https://github.com/gtrabanco/dotly).
 
-Possiblely the secrets scripts will change soon, but will keep compatibility or a way to migrate to new version so keep free to use this repository.
-
-<div id='section-id-4'/>
-
-<div id='section-id-5'/>
 
 # Features
 
@@ -39,11 +9,7 @@ Possiblely the secrets scripts will change soon, but will keep compatibility or 
 * Easy migration of private files
 * Autoload secret variables.
 
-<div id='section-id-12'/>
-
 # Usage
-
-<div id='section-id-14'/>
 
 ## Installation prerequisites
 
@@ -53,11 +19,7 @@ Make sure you have installed these packages:
 
 Anyway they will be installed the first time you execute any `secrets` subcommand if they are not.
 
-<div id='section-id-22'/>
-
 ## Creating your own repository from this one
-
-<div id='section-id-24'/>
 
 ### If you are planning to use GITHUB private repository
 
@@ -65,8 +27,6 @@ Anyway they will be installed the first time you execute any `secrets` subcomman
 2. Repository name: "secrets" (You can use another name but I recommend you to use this name because it will be added as submodule in dotly with this name, no way to use other name).
 3. Mark as private repository
 4. Copy the ssh git url and continue to [Installation](#Installation)
-
-<div id='section-id-31'/>
 
 #### Keybase as submodule
 
@@ -84,8 +44,6 @@ This is because for security reasons git only allow some features for specific p
 ```bash
 git config --global --add protocol.keybase.allow always
 ```
-
-<div id='section-id-48'/>
 
 ### If you are planning to use other GIT server
 
@@ -115,8 +73,6 @@ rm -rf secrets
 
 4. Go [Installation](#Installation)
 
-<div id='section-id-76'/>
-
 ## Installation
 
 1. Create your own private using this one as your template repository as private repository (see ## Security recommendations) with your desired name, it is suggested to use `secrets` instead of `dotly_secrets`. If you have not done this see [Creating your own repository from this one](#Creating your own repository from this one).
@@ -126,14 +82,10 @@ rm -rf secrets
 5. Append for example, your GITHUB_TOKEN `dot secrets var GITHUB_TOKEN "my secret token"`
 6. Get your secret variable value by `dot secrets var GITHUB_TOKEN`
 
-<div id='section-id-85'/>
-
 ### Load secrets vars on startup (automatically)
 
 1. To load on startup, execute: `dot self init secrets_autload`
 2. Reset your terminal and check by executing `echo "$GITHUB_TOKEN"`
-
-<div id='section-id-90'/>
 
 ### Load secrets vars on startup (manually)
 
@@ -143,8 +95,6 @@ rm -rf secrets
 ```
 export GITHUB_TOKEN="$(dot secrets var GITHUB_TOKEN)"
 ```
-
-<div id='section-id-99'/>
 
 ## Recovering from "old" dotfiles
 
@@ -157,8 +107,6 @@ dot secrets sync
 That should download your secrets and apply symlinks to your secrets.
 
 
-<div id='section-id-110'/>
-
 ## Appending files in secrets and linking
 
 It is important to know that when you append file to secrets it will be moved to `secrets/files` directory and save them in that folder by moving to it and store command will create a symlink in the original location.
@@ -170,8 +118,6 @@ For example we want to save our `~/.ssh/id_rsa` private key in `secrets/file/ssh
 dot secrets file ~/.ssh/id_rsa ssh
 ```
 
-<div id='section-id-121'/>
-
 ## Modifying the link of a current secret
 
 Suppose we are in an eviroment where `.ssh` is not in our home, for example in `/etc/dropbear` and we want to have the same private key:
@@ -182,8 +128,6 @@ dot file edit --by-alias
 
 In the prompt select `~/.ssh/id_rsa` and put later `/etc/dropbear/id_rsa` after that your `secrets` repository will be synced, the old symlink will be removed and new one will be applied.
 
-
-<div id='section-id-132'/>
 
 ## Deleting secrets
 
@@ -200,16 +144,12 @@ dot secrets file delete [<relative_path>]
 ```
 
 
-<div id='section-id-147'/>
-
 ### About secrets file deleting
 
 The path to the file is relative to the stored secrets (relative to: `$DOTFILES_PATH/modules/secrets/files`). The file will be deleted across commits so this could take some time. This also delete the symlink, the row in the json secrets file and the file in local git. If yo do not provide the option `--no-sync` will syncronize with your remote repository but you will be promped if you want to do unless you pass the argument `--yes`. See help `dot secrets file --help`.
 
 If you do not provide any argument you will be asked about the file you want to delete. You will see a list using fzf and you can select multiple files by using `Shift+Tab`.
 
-
-<div id='section-id-154'/>
 
 ## Purging all
 
@@ -232,16 +172,12 @@ dot secrets purge
 ```
 
 
-<div id='section-id-175'/>
-
 ## Security recommedations
 
 Remember that in this repository you will save private files so keep this repository private or use any crypted GIT repository like Keybase repositories is recommended. ENCRYPTION WILL NOT HAPPEN USING DOTLY SCRIPTS, the files and vars will be stored in cleartext. To handle this you will need a 3rd party software/hardware like Keybase git repositories which are stores encripted.
 
 Also remember that is your responsability the security of the repository and we do not provide any guarantee about the `secrets` dotly scripts or your secrets. IS ONLY YOUR OWN RESPONSABILITY
 
-
-<div id='section-id-182'/>
 
 ## secrets.json
 
