@@ -26,9 +26,6 @@
 # About this repository
 This is a template/skel repository to store secrets with your dotfiles if you are using [DOTLY framwework](https://github.com/gtrabanco/dotly).
 
-Possiblely the secrets scripts will change soon, but will keep compatibility or a way to migrate to new version so keep free to use this repository.
-
-<div id='section-id-4'/>
 
 <div id='section-id-5'/>
 

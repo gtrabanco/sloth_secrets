@@ -1,3 +1,4 @@
+<!-- Use this to modify and later apply summarize script -->
 # About this repository
 This is a template/skel repository to store secrets with your dotfiles if you are using [DOTLY framwework](https://github.com/gtrabanco/dotly).
 
