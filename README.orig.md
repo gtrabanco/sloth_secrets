@@ -85,7 +85,7 @@ rm -rf secrets
 
 ### Load secrets vars on startup (automatically)
 
-PLEASE, NOTE THAT THIS METHOD IS EXPENSIVE IN TERMS OF LOADING TIME. IS VERY RECOMMENDED TO USE MANUALLY WAY.
+PLEASE, NOTE THAT THIS METHOD IS MORE EXPENSIVE IN TERMS OF LOADING TIME. ITS AROUND 20 ms slower than manually way for 7 variables.
 
 1. To load on startup, execute: `dot self init secrets_autload`
 2. Reset your terminal and check by executing `echo "$GITHUB_TOKEN"`
